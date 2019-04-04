@@ -15,6 +15,8 @@ LOG_LEVEL = 'ERROR'
 # LOG_LEVEL = 'WARNING'
 # LOG_LEVEL = 'INFO'
 # LOG_LEVEL = 'DEBUG'
+LOG_FILE='./log.log'
+
 
 SPIDER_MODULES = ['scrapy_learn.spiders']
 NEWSPIDER_MODULE = 'scrapy_learn.spiders'
@@ -23,7 +25,8 @@ NEWSPIDER_MODULE = 'scrapy_learn.spiders'
 # USER_AGENT = 'scrapy_learn (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+# ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32

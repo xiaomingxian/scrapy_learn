@@ -2,6 +2,8 @@
 import scrapy
 import logging
 
+# 实例化logging
+logger = logging.getLogger(__name__)
 
 
 class BaiduSpiderSpider(scrapy.Spider):
@@ -11,7 +13,7 @@ class BaiduSpiderSpider(scrapy.Spider):
 
     # start_urls结果返回到parse
     def parse(self, response):
-        logging.error('------------>error信息')
-        logging.warning('---------->warning信息')
-        logging.info('------------->info信息')
-        logging.debug('------------>debug信息')
+        logger.error('------------>error信息')
+        logger.warning('---------->warning信息')
+        logger.info('------------->info信息')
+        logger.debug('------------>debug信息')

@@ -14,23 +14,26 @@ class BaiduSpiderSpider(scrapy.Spider):
         # xpath解析
         # print('======>', response)
         # 结果
-        list=[]
+        list = []
 
         xpath_url = '//@href'
+        # xpath_url = '//@div'
         res = response.xpath(xpath_url)
         # print('内容数量：', len(res))
         for i in res:
             itim = {}
-            flag=0
-            # print(str(i.extract()))
-            if str(i.extract()).endswith('css'):
-                itim['css'] = i.extract()
-                flag=1
-            if str(i.extract()).endswith('png'):
-                itim['pic'] = i.extract()
-                flag=1
-            if flag:
-                list.append(itim)
-                yield itim
+            # flag=0
+            # # print(str(i.extract()))
+            # if str(i.extract()).endswith('css'):
+            #     itim['css'] = i.extract()
+            #     flag=1
+            # if str(i.extract()).endswith('png'):
+            #     itim['pic'] = i.extract()
+            #     flag=1
+            # if flag:
+            #     list.append(itim)
+            #     yield itim
+            itim['msg'] = i.extract
+            yield itim
         # Spider must return Request, BaseItem, dict or None, got 'list' in <GET https://huaban.com/>
         # yield list

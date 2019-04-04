@@ -1,0 +1,40 @@
+将python下载的工具添加到全局
+
+将此路径添加到环境变量 ：E:\python3.6\Scripts
+#--------------------------- 安装问题 --------------------------
+一般提示重复的，删除 E:\python3.6\Lib\site-packages 下的同名-info文件即可
+#--------------------------  更新pip  --------------------------
+python -m pip install --upgrade pip
+得删除其他的pip版本  pip包得留下
+
+pip --default-timeout=100 install -U selenium
+#---------------------------
+环境搭建：windows
+
+     这里去官网上下载Twisted文件：https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted
+	    cp后面是python版本号，根据你自己系统安装的python版本进行相应下载即可。
+                Twisted-18.9.0-cp36-cp36m-win_amd64.whl
+        进入Twisted-18.9.0-cp36-cp36m-win_amd64.whl目录执行：
+        pip install Twisted-18.9.0-cp36-cp36m-win_amd64.whl
+
+        pip install scrapy
+
+#----------- 忽略
+		下载 ： virtualenv-15.1.0-py2.py3-none-any.whl
+		pip install --upgrade twisted pypiwin32
+
+#---------------------爬虫项目
+	创建
+		scrapy startproject xxx
+		scrapy genspider my_spider baidu.com[爬虫范围]
+	启动爬虫
+		scrapy crawl my_sppider[爬虫名]
+		报错：ModuleNotFoundError: No module named 'win32api'
+		pip install pywin32 或者以下方式
+            https://sourceforge.net/projects/pywin32/files/pywin32/
+             下build220:
+              下载   pywin32-220.win-amd64-py3.6   3.6
+                    pywin32-220.win-amd64-py3.7   3.7
+
+
+
