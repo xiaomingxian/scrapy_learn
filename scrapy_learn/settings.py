@@ -11,9 +11,9 @@
 
 BOT_NAME = 'scrapy_learn'
 # 日志级别由高到低
-LOG_LEVEL = 'ERROR'
+# LOG_LEVEL = 'ERROR'
 # LOG_LEVEL = 'WARNING'
-# LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'INFO'
 # LOG_LEVEL = 'DEBUG'
 # LOG_FILE='./log.log'
 
@@ -60,9 +60,11 @@ COOKIES_ENABLED = False
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    'scrapy_learn.middlewares.ScrapyLearnDownloaderMiddleware': 543,
-# }
+# 将代理类添加到中间件列表中
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_learn.middlewares.ScrapyLearnDownloaderMiddleware': 543,
+    'scrapy_learn.middlewares.ProxyMiddleware': 544,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -100,3 +102,14 @@ ITEM_PIPELINES = {
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# 代理ip
+PROXIES = ['http://183.207.95.27:80', 'http://111.6.100.99:80', 'http://122.72.99.103:80',
+           'http://106.46.132.2:80', 'http://112.16.4.99:81', 'http://123.58.166.113:9000',
+           'http://118.178.124.33:3128', 'http://116.62.11.138:3128', 'http://121.42.176.133:3128',
+           'http://111.13.2.131:80', 'http://111.13.7.117:80', 'http://121.248.112.20:3128',
+           'http://112.5.56.108:3128', 'http://42.51.26.79:3128', 'http://183.232.65.201:3128',
+           'http://118.190.14.150:3128', 'http://123.57.221.41:3128', 'http://183.232.65.203:3128',
+           'http://166.111.77.32:3128', 'http://42.202.130.246:3128', 'http://122.228.25.97:8101',
+           'http://61.136.163.245:3128', 'http://121.40.23.227:3128', 'http://123.96.6.216:808',
+           'http://59.61.72.202:8080', 'http://114.141.166.242:80', 'http://61.136.163.246:3128',
+           'http://60.31.239.166:3128', 'http://114.55.31.115:3128', 'http://202.85.213.220:3128']
