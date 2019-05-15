@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from pymongo import MongoClient
 import pymysql
+import json
 
 client = MongoClient('localhost', 27017)
 db = client['scrapy_db']
@@ -15,21 +16,40 @@ table = db['huaban_table']
 # 数据可以在多个pipline中传递
 
 class ScrapyLearnPipeline(object):
+
     # 此方法不可改名-----区分多个spider   spider.name
     def process_item(self, item, spider):
         if spider.name == 'huaban':
             print('===>', item)
             try:
                 table.insert(item)
-
             except Exception as e:
                 print(e)
             print("----->", table.find())
             print('存储成功')
-            return item
+            return item  # 告诉引擎-已经处理完毕
 
 
 class TestPipeline(object):
     def process_item(self, item, spider):
         print("%s" % "优先级测试")
         return item
+
+
+class workPipleLine(object):
+    # 初始化的时候只执行一次
+    def __init__(self):
+        self.f = open("../../../file/work.json", 'w', encoding='utf8')
+
+    def process_item(self, item, spider):
+        if spider.name == 'workSpider':
+            content = json.dumps(dict(item), ensure_ascii=False)  # 默认是ascii false后为unicode
+            content.encode('utf8')
+
+            print("%s" % "执行")
+            return item
+
+    def close_spider(self, spider):
+        # 爬取完后执行
+        self.f.close()
+        pass

@@ -34,6 +34,6 @@ class BaiduSpiderSpider(scrapy.Spider):
             #     list.append(itim)
             #     yield itim
             itim['msg'] = i.extract
-            yield itim
+            yield itim#有yielad是个生成器  --不会中段 如果是在for循环中下次是从循环开始的地方开始
         # Spider must return Request, BaseItem, dict or None, got 'list' in <GET https://huaban.com/>
         # yield list

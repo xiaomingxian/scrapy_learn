@@ -15,14 +15,15 @@ LOG_LEVEL = 'ERROR'
 # LOG_LEVEL = 'WARNING'
 # LOG_LEVEL = 'INFO'
 # LOG_LEVEL = 'DEBUG'
-LOG_FILE='./log.log'
+# LOG_FILE='./log.log'
 
 
 SPIDER_MODULES = ['scrapy_learn.spiders']
 NEWSPIDER_MODULE = 'scrapy_learn.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'scrapy_learn (+http://www.yourdomain.com)'
+# 模拟浏览器请求
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'
 
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
@@ -40,7 +41,7 @@ ROBOTSTXT_OBEY = False
 # CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-# COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
@@ -71,8 +72,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+# 有多个item管道 每个item都会经过
 ITEM_PIPELINES = {
-    #  要开启的pipline的位置 300距离引擎的远近，距离引擎越近越早执行
+    #  要开启的pipline的位置 300距离引擎的远近，距离引擎越近越早执行    范围 0-1000
     'scrapy_learn.pipelines.ScrapyLearnPipeline': 300,
     # 'scrapy_learn.pipelines.TestPipeline': 200,
 }

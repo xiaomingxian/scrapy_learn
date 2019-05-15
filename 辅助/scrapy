@@ -29,12 +29,17 @@ pip --default-timeout=100 install -U selenium
 		scrapy genspider my_spider baidu.com[爬虫范围]
 	启动爬虫
 		scrapy crawl my_sppider[爬虫名]
+		scrapy crawl my_sppider[爬虫名] -o  文件名 #输出数据到指定文件  csv/json/xml
 		报错：ModuleNotFoundError: No module named 'win32api'
 		pip install pywin32 或者以下方式
             https://sourceforge.net/projects/pywin32/files/pywin32/
              下build220:
               下载   pywin32-220.win-amd64-py3.6   3.6
                     pywin32-220.win-amd64-py3.7   3.7
+
+
+查看爬虫数量 scrapy list
+
 
 
 

@@ -10,5 +10,8 @@ import scrapy
 
 class ScrapyLearnItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    # 定义字段
+    name = scrapy.Field()
+    age = scrapy.Field()
+    address = scrapy.Field()
     pass
