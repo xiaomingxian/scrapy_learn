@@ -11,9 +11,9 @@
 
 BOT_NAME = 'scrapy_learn'
 # 日志级别由高到低
-# LOG_LEVEL = 'ERROR'
+LOG_LEVEL = 'ERROR'
 # LOG_LEVEL = 'WARNING'
-LOG_LEVEL = 'INFO'
+# LOG_LEVEL = 'INFO'
 # LOG_LEVEL = 'DEBUG'
 # LOG_FILE='./log.log'
 
@@ -63,7 +63,7 @@ COOKIES_ENABLED = False
 # 将代理类添加到中间件列表中
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_learn.middlewares.ScrapyLearnDownloaderMiddleware': 543,
-    'scrapy_learn.middlewares.ProxyMiddleware': 544,
+    # 'scrapy_learn.middlewares.ProxyMiddleware': 544,
 }
 
 # Enable or disable extensions
@@ -79,6 +79,7 @@ ITEM_PIPELINES = {
     #  要开启的pipline的位置 300距离引擎的远近，距离引擎越近越早执行    范围 0-1000
     'scrapy_learn.pipelines.ScrapyLearnPipeline': 300,
     # 'scrapy_learn.pipelines.TestPipeline': 200,
+    'scrapy_learn.pipelines.ipPipleLine': 200,
 }
 # 开启piplines
 

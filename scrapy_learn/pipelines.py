@@ -39,7 +39,7 @@ class TestPipeline(object):
 class workPipleLine(object):
     # 初始化的时候只执行一次
     def __init__(self):
-        self.f = open("../../../file/work.json", 'w', encoding='utf8')
+        self.f = open(r"C:\xxm\learn\python_workspace\scrapy_learn/filefile/work.json", 'w', encoding='utf8')
 
     def process_item(self, item, spider):
         if spider.name == 'workSpider':
@@ -47,6 +47,28 @@ class workPipleLine(object):
             content.encode('utf8')
 
             print("%s" % "执行")
+            return item
+
+    def close_spider(self, spider):
+        # 爬取完后执行
+        self.f.close()
+        pass
+
+
+class ipPipleLine(object):
+    # 初始化的时候只执行一次
+    def __init__(self):
+        self.f = open(r"C:\xxm\learn\python_workspace\scrapy_learn/file/ip.txt", 'w', encoding='utf8')
+        pass
+
+    def process_item(self, item, spider):
+        if spider.name == 'ipSpider':
+            # content = json.dumps(dict(item), ensure_ascii=False)  # 默认是ascii false后为unicode
+            # c = content.encode('utf8')
+            #
+            # print('----->pipeline:', c)
+            print("ip----",item['ip'])
+            print("port----",item['port'])
             return item
 
     def close_spider(self, spider):

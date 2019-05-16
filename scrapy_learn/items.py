@@ -14,4 +14,8 @@ class ScrapyLearnItem(scrapy.Item):
     name = scrapy.Field()
     age = scrapy.Field()
     address = scrapy.Field()
+    # ip和端口
+    ip = scrapy.Field()
+    port = scrapy.Field()
+    map = scrapy.Field()
     pass
