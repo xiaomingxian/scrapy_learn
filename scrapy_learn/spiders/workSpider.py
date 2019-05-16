@@ -31,7 +31,7 @@ class ProxytestSpider(scrapy.Spider):
                 if l[0] == 'DNS':
                     r = right.xpath('./text()').extract()
                 elif '时间' in l[0]:
-                    r = right.xpath('./div/span/text()').extract()
+                    r = right.xpath('./span/text()').extract()
                 else:
                     r = right.xpath('./div/span/text()').extract()
 
