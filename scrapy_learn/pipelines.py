@@ -36,29 +36,11 @@ class TestPipeline(object):
         return item
 
 
-class workPipleLine(object):
-    # 初始化的时候只执行一次
-    def __init__(self):
-        self.f = open(r"C:\xxm\learn\python_workspace\scrapy_learn/filefile/work.json", 'w', encoding='utf8')
-
-    def process_item(self, item, spider):
-        if spider.name == 'workSpider':
-            content = json.dumps(dict(item), ensure_ascii=False)  # 默认是ascii false后为unicode
-            content.encode('utf8')
-
-            print("%s" % "执行")
-            return item
-
-    def close_spider(self, spider):
-        # 爬取完后执行
-        self.f.close()
-        pass
-
-
 class ipPipleLine(object):
     # 初始化的时候只执行一次
     def __init__(self):
-        self.f = open(r"C:\xxm\learn\python_workspace\scrapy_learn/file/ip.txt", 'w', encoding='utf8')
+        # self.f = open(r"C:\xxm\learn\python_workspace\scrapy_learn/file/ip.txt", 'w', encoding='utf8')
+        self.f = open(r"/Users/xxm/develop/py_workspace/scrapy_learn/file/ip.txt", 'w', encoding='utf8')
         pass
 
     def process_item(self, item, spider):
@@ -67,8 +49,8 @@ class ipPipleLine(object):
             # c = content.encode('utf8')
             #
             # print('----->pipeline:', c)
-            print("ip----",item['ip'])
-            print("port----",item['port'])
+            print("ip----", item['ip'])
+            print("port----", item['port'])
             return item
 
     def close_spider(self, spider):
@@ -76,11 +58,40 @@ class ipPipleLine(object):
         self.f.close()
         pass
 
+
 class workPipleLine(object):
     # 初始化的时候只执行一次
+    def __init__(self):
+        self.f = open("work.txt", 'w')
+        pass
 
     def process_item(self, item, spider):
         if spider.name == 'work':
-            print('~~~~~~~~~~~~',item)
+            # 转成字典类型--再转成json,中文处理-->最终转成字符串
+            context = json.dumps(dict(item), ensure_ascii=False).__str__() + "\n"
+            self.f.write(context)
+
             return item
 
+    def close_spider(self,spider):
+        self.f.close()
+        pass
+
+
+class cnPipleLine(object):
+    pass
+    # 初始化的时候只执行一次
+    # def __init__(self):
+    #     self.f = open("/Users/xxm/develop/py_workspace/scrapy_learn/file/names", 'w')
+    #     pass
+    #
+    # def process_item(self, item, spider):
+    #     if spider.name == 'cn_work':
+    #         # 转成字典类型--再转成json,中文处理-->最终转成字符串
+    #         self.f.write(item['cn']+'\n')
+    #
+    #         return item
+    #
+    # def close_spider(self,spider):
+    #     self.f.close()
+    #     pass

@@ -11,9 +11,9 @@
 
 BOT_NAME = 'scrapy_learn'
 # 日志级别由高到低
-LOG_LEVEL = 'ERROR'
+# LOG_LEVEL = 'ERROR'
 # LOG_LEVEL = 'WARNING'
-# LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'INFO'
 # LOG_LEVEL = 'DEBUG'
 # LOG_FILE='./log.log'
 
@@ -81,11 +81,13 @@ ITEM_PIPELINES = {
     # 'scrapy_learn.pipelines.TestPipeline': 200,
     'scrapy_learn.pipelines.ipPipleLine': 200,
     'scrapy_learn.pipelines.workPipleLine': 100,
+    'scrapy_learn.pipelines.cnPipleLine': 50,
 }
 # 开启piplines
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
+# 自动限速
 # AUTOTHROTTLE_ENABLED = True
 # The initial download delay
 # AUTOTHROTTLE_START_DELAY = 5

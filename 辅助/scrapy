@@ -41,5 +41,25 @@ pip --default-timeout=100 install -U selenium
 查看爬虫数量 scrapy list
 
 
+#模拟发送请求
+scrapy shell 'http.....'
 
+
+response---相关
+response.Selectors().xpath() -->简写为.xpath()
+...                 .css()
+...                 .re()
+
+
+请求去重思想：每一个请求过来的时候会留下请求的指纹[特征码]，会保留在scrapy的内存
+            请求过来的时候会提取特征码与原来的进行比对，如果在特征码库中有这个特征码，就不会将它加入到请求队列里
+
+
+
+xpath多规则 用 or/|连接
+xpath的下表从1开始 python的从0开始
+
+所有的itim用同一个管道
+item交给管道
+request交给调度器
 
