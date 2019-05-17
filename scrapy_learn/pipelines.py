@@ -75,3 +75,12 @@ class ipPipleLine(object):
         # 爬取完后执行
         self.f.close()
         pass
+
+class workPipleLine(object):
+    # 初始化的时候只执行一次
+
+    def process_item(self, item, spider):
+        if spider.name == 'work':
+            print('~~~~~~~~~~~~',item)
+            return item
+

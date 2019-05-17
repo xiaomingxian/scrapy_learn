@@ -17,5 +17,17 @@ class ScrapyLearnItem(scrapy.Item):
     # ip和端口
     ip = scrapy.Field()
     port = scrapy.Field()
-    map = scrapy.Field()
+    # work
+    zcs = scrapy.Field()
+    c_time = scrapy.Field()
+    g_time = scrapy.Field()
+    dns = scrapy.Field()
+    status = scrapy.Field()
+    yum = scrapy.Field()
+    people = scrapy.Field()
+    mail = scrapy.Field()
+    phone = scrapy.Field()
+
+
+
     pass

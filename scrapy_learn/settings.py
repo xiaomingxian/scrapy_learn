@@ -23,7 +23,7 @@ NEWSPIDER_MODULE = 'scrapy_learn.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # 模拟浏览器请求
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36'
+USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50'
 
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
@@ -80,6 +80,7 @@ ITEM_PIPELINES = {
     'scrapy_learn.pipelines.ScrapyLearnPipeline': 300,
     # 'scrapy_learn.pipelines.TestPipeline': 200,
     'scrapy_learn.pipelines.ipPipleLine': 200,
+    'scrapy_learn.pipelines.workPipleLine': 100,
 }
 # 开启piplines
 
