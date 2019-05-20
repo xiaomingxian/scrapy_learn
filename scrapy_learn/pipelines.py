@@ -7,6 +7,7 @@
 from pymongo import MongoClient
 import pymysql
 import json
+import time
 
 client = MongoClient('localhost', 27017)
 db = client['scrapy_db']
@@ -36,11 +37,12 @@ class TestPipeline(object):
         return item
 
 
+#
 class ipPipleLine(object):
     # 初始化的时候只执行一次
     def __init__(self):
-        # self.f = open(r"C:\xxm\learn\python_workspace\scrapy_learn/file/ip.txt", 'w', encoding='utf8')
-        self.f = open(r"/Users/xxm/develop/py_workspace/scrapy_learn/file/ip.txt", 'w', encoding='utf8')
+        self.f = open(r"C:\xxm\learn\python_workspace\scrapy_learn/file/ip.txt", 'w', encoding='utf8')
+        # self.f = open(r"/Users/xxm/develop/py_workspace/scrapy_learn/file/ip.txt", 'w', encoding='utf8')
         pass
 
     def process_item(self, item, spider):
@@ -59,21 +61,35 @@ class ipPipleLine(object):
         pass
 
 
+# 没执行一次爬虫命令就创建一个文件
 class workPipleLine(object):
     # 初始化的时候只执行一次
-    def __init__(self):
-        self.f = open("work.txt", 'w')
+    def __init__(self,CN_RESULT):
+        self.file_name="/re_"+(str(time.time()).replace(".",""))+'.json'
+        self.f = open(CN_RESULT+self.file_name, 'a')
+        self.f.write('[')
+        self.f.flush()
         pass
+
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        settings = crawler.settings
+        if settings['CN_SOURCE']:
+            return cls(CN_RESULT=settings['CN_RESULT'])
 
     def process_item(self, item, spider):
         if spider.name == 'work':
             # 转成字典类型--再转成json,中文处理-->最终转成字符串
-            context = json.dumps(dict(item), ensure_ascii=False).__str__() + "\n"
+            context = json.dumps(dict(item), ensure_ascii=False).__str__() + ",\n"
             self.f.write(context)
-
+            self.f.flush()
             return item
 
-    def close_spider(self,spider):
+    def close_spider(self, spider):
+
+        self.f.write(']')
+        self.f.flush()
         self.f.close()
         pass
 

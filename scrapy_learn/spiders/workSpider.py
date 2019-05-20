@@ -1,27 +1,60 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import logging
+import time
+import os
+
 logger = logging.getLogger(__name__)
+
 
 class ProxytestSpider(scrapy.Spider):
     name = 'work'
     # allowed_domains = ['chinaz.com']
     start_urls = ['http://whois.chinaz.com/youdaody.info']
-    base_url='http://whois.chinaz.com'
+    base_url = 'http://whois.chinaz.com'
+    # 域名数组
     names = []
-    file_path = r'/Users/xxm/develop/py_workspace/scrapy_learn/file/names'
+    # 数据源文件数组
+    files = []
+    # 数据源文件所在文件夹
+    source_root = None
+    # 解析结果所在文件夹
+    result_root = None
+    # 数据索引
     index = 0
+    # 未查询到结果的文件--前缀加时间戳
+    noResultFile = None
 
-    def __init__(self):
-        with open(self.file_path, 'r', encoding='utf8') as f:
-            l_name = f.readlines()
-            for name in l_name:
-                if '\n' in name:
-                    self.names.append(name.replace('\n',''))
-                else:
-                    self.names.append(name)
-            print(self.names)
-            print(len(self.names))
+    # 初始化---
+    def __init__(self, source_root, result_root):
+        # 从配置文件读取配置的数据源所在文件
+        self.source_root = source_root
+        self.result_root = result_root
+        # 递归查找所有文件进行便利
+        list = os.listdir(self.source_root)
+        for i in range(0, len(list)):
+            path = os.path.join(self.source_root, list[i])
+            if os.path.isfile(path):
+                # 如果是文件---就读取文件---记录文件名[便于删除]
+                self.files.append(path)
+                with open(path, 'r', encoding='utf8') as f:
+                    l_name = f.readlines()
+                    for name in l_name:
+                        # 排除空行
+                        if name:
+                            # 去除换行符
+                            if '\n' in name:
+                                self.names.append(name.replace('\n', ''))
+                            else:
+                                self.names.append(name)
+        print('域名：', source_root, self.names)
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        settings = crawler.settings
+        if settings['CN_SOURCE'] and settings['CN_SOURCE']:
+            # 这里调用的是init()方法，，参数列表得保持一致
+            return cls(source_root=settings['CN_SOURCE'], result_root=settings['CN_RESULT'])
 
     def parse(self, response):
         x_ = '//ul[@id="sh_info"]//li'
@@ -100,24 +133,75 @@ class ProxytestSpider(scrapy.Spider):
                 pass
             else:
                 itim[key] = value
-        # logger.info('--->当前页码{},读取到的信息{}',self.index,itim)
-        print('--->当前页码:',self.index,',读取到的信息:',itim)
-        if self.index!=0:
-            yield itim
+        print('--->当前页码:', self.index, ',读取到的信息:', itim)
+        # 初始url结果不传入管道
+        if self.index != 0:
+            if itim:
+                yield itim
+            else:
+                # 记录未查询到结果的文件存在
+                if self.noResultFile:
+                    file_path = 'no_' + str(time.time()).replace('.', '') + '.txt'
+                    self.noResultFile = open(file_path, 'a')
+                else:
+                    # 将域名填入 文件
+                    self.noResultFile.write(self.names.index(self.index) + '\n')
+                    self.noResultFile.flush()
+                    self.noResultFile.close()
+                # 未解析到结果---将域名放在未解决的文件
+                print("--->未解析到结果，放入为解决文件", self.names.index(self.index))
 
-        # 构造下个请求--读取文件
-        url=None
-        if self.index<len(self.names):
-            url =self.base_url+ self.names[self.index]
+        # 请求延时--避免反爬虫的  低级策略 Low!!!
+        # time.sleep(3)
+        # ==================================        解析结束        ===============================================
+        # ==================================  构造下个请求--读取文件  ===============================================
+        url = None
+        if self.index < len(self.names):
+            url = self.base_url + self.names[self.index]
 
-        # print("----域名个数：",len(self.names))
         # 读取文件
-        if len(self.names) == self.index+1:
+        if len(self.names) == self.index + 1:
             print('--->读取完成')
         if self.index < len(self.names):
-            yield scrapy.Request(url, callback=self.parse,dont_filter=True)
-
+            yield scrapy.Request(url, callback=self.parse, dont_filter=True)
             self.index += 1
+        else:
+            self.delete_file()
 
+    def delete_file(self):
+        # 所有数据爬取完毕-删除数据源-遍历files
+        for file in self.files:
+            print("---->删除文件：", file)
+            if os.path.exists(file):
+                os.remove(file)
+        # 删除结果文件中的空文件
+        print("=========", self.result_root)
+        if self.result_root:
+            list = os.listdir(self.result_root)
+            for i in range(0, len(list)):
+                path = os.path.join(self.result_root, list[i])
+                if os.path.isfile(path):
+                    # 如果是文件--判断文件大小-如果为0就删除
+                    # 如果文件大小为0
+                    if os.path.getsize(path) == 0:
+                        # 删除文件
+                        if os.path.exists(path):
+                            try:
+                                os.remove(path)
+                            except Exception as e:
+                                print("出现异常", e)
+                            print('=====>删除空白文件', path)
+                    # 判断是否是空json
+                    else:
+                        with open(path, 'r',encoding='utf8') as f:
+                            # 读取第一行
+                            first_line = f.readline()
+                            if first_line == '[]':
+                                # 删除文件
+                                if os.path.exists(path):
+                                    try:
+                                        os.remove(path)
+                                    except Exception as e:
+                                        print("出现异常", e)
 
-
+                                    print('=====>删除空json文件', path)

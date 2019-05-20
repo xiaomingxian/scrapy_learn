@@ -11,9 +11,9 @@
 
 BOT_NAME = 'scrapy_learn'
 # 日志级别由高到低
-# LOG_LEVEL = 'ERROR'
+LOG_LEVEL = 'ERROR'
 # LOG_LEVEL = 'WARNING'
-LOG_LEVEL = 'INFO'
+# LOG_LEVEL = 'INFO'
 # LOG_LEVEL = 'DEBUG'
 # LOG_FILE='./log.log'
 
@@ -30,11 +30,14 @@ USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
+# 线程数 默认16
 # CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
+# 下载延迟
 # DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
@@ -117,3 +120,7 @@ PROXIES = ['http://183.207.95.27:80', 'http://111.6.100.99:80', 'http://122.72.9
            'http://61.136.163.245:3128', 'http://121.40.23.227:3128', 'http://123.96.6.216:808',
            'http://59.61.72.202:8080', 'http://114.141.166.242:80', 'http://61.136.163.246:3128',
            'http://60.31.239.166:3128', 'http://114.55.31.115:3128', 'http://202.85.213.220:3128']
+
+
+CN_SOURCE=r"C:\xxm\learn\python_workspace\scrapy_learn\file\cns"
+CN_RESULT=r"C:\xxm\learn\python_workspace\scrapy_learn\file\result"
