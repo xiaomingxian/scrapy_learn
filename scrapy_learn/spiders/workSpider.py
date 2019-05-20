@@ -12,6 +12,7 @@ class ProxytestSpider(scrapy.Spider):
     # allowed_domains = ['chinaz.com']
     start_urls = ['http://whois.chinaz.com/youdaody.info']
     base_url = 'http://whois.chinaz.com'
+    mail_base_url = 'http://whois.chinaz.com/reverse?host=guo_xiao_qin@163.com&page='
     # 域名数组
     names = []
     # 数据源文件数组
@@ -22,6 +23,8 @@ class ProxytestSpider(scrapy.Spider):
     result_root = None
     # 数据索引
     index = 0
+    # 邮箱反查 页码
+    mail_page = 1
     # 未查询到结果的文件--前缀加时间戳
     noResultFile = None
 
@@ -128,6 +131,11 @@ class ProxytestSpider(scrapy.Spider):
                 if len(r) == 1:
                     r = r[0]
                 key = l[0]
+                if '邮箱' in key:
+                    # 进行邮箱反查---构造url--进行请求
+                    yield scrapy.Request(self.mail_base_url + str(self.mail_page), callback=self.mail_parse, dont_filter=True)
+
+                    pass
                 value = r
             if key == '' and value == '':
                 pass
@@ -140,7 +148,7 @@ class ProxytestSpider(scrapy.Spider):
                 yield itim
             else:
                 # 记录未查询到结果的文件存在
-                if self.noResultFile:
+                if self.noResultFile is None:
                     file_path = 'no_' + str(time.time()).replace('.', '') + '.txt'
                     self.noResultFile = open(file_path, 'a')
                 else:
@@ -168,40 +176,16 @@ class ProxytestSpider(scrapy.Spider):
         else:
             self.delete_file()
 
+    #  邮箱反查
+    def mail_parse(self, response):
+
+
+
+        pass
+
     def delete_file(self):
         # 所有数据爬取完毕-删除数据源-遍历files
         for file in self.files:
             print("---->删除文件：", file)
             if os.path.exists(file):
                 os.remove(file)
-        # 删除结果文件中的空文件
-        print("=========", self.result_root)
-        if self.result_root:
-            list = os.listdir(self.result_root)
-            for i in range(0, len(list)):
-                path = os.path.join(self.result_root, list[i])
-                if os.path.isfile(path):
-                    # 如果是文件--判断文件大小-如果为0就删除
-                    # 如果文件大小为0
-                    if os.path.getsize(path) == 0:
-                        # 删除文件
-                        if os.path.exists(path):
-                            try:
-                                os.remove(path)
-                            except Exception as e:
-                                print("出现异常", e)
-                            print('=====>删除空白文件', path)
-                    # 判断是否是空json
-                    else:
-                        with open(path, 'r',encoding='utf8') as f:
-                            # 读取第一行
-                            first_line = f.readline()
-                            if first_line == '[]':
-                                # 删除文件
-                                if os.path.exists(path):
-                                    try:
-                                        os.remove(path)
-                                    except Exception as e:
-                                        print("出现异常", e)
-
-                                    print('=====>删除空json文件', path)

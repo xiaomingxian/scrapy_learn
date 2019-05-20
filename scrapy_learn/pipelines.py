@@ -8,6 +8,7 @@ from pymongo import MongoClient
 import pymysql
 import json
 import time
+import os
 
 client = MongoClient('localhost', 27017)
 db = client['scrapy_db']
@@ -64,34 +65,84 @@ class ipPipleLine(object):
 # 没执行一次爬虫命令就创建一个文件
 class workPipleLine(object):
     # 初始化的时候只执行一次
-    def __init__(self,CN_RESULT):
-        self.file_name="/re_"+(str(time.time()).replace(".",""))+'.json'
-        self.f = open(CN_RESULT+self.file_name, 'a')
-        self.f.write('[')
-        self.f.flush()
-        pass
+    def __init__(self, CN_RESULT):
+        self.result_root = CN_RESULT
+        self.file_name = "/re_" + (str(time.time()).replace(".", "")) + '.json'
+        self.mail_file_name = "/mail_" + (str(time.time()).replace(".", "")) + '.json'
+        self.f = None
 
+        pass
 
     @classmethod
     def from_crawler(cls, crawler):
         settings = crawler.settings
-        if settings['CN_SOURCE']:
+        if settings['CN_RESULT']:
             return cls(CN_RESULT=settings['CN_RESULT'])
 
     def process_item(self, item, spider):
         if spider.name == 'work':
-            # 转成字典类型--再转成json,中文处理-->最终转成字符串
-            context = json.dumps(dict(item), ensure_ascii=False).__str__() + ",\n"
-            self.f.write(context)
-            self.f.flush()
-            return item
+            if item['mail'] == None:
+                # 如果文件不存在--创建文件
+                if item:
+                    # 有内容才写
+                    if not os._exists(self.result_root + self.file_name):
+                        self.f = open(self.result_root + self.file_name, 'a')
+                        self.f.write('[')
+                        self.f.flush()
+                        pass
+                    # 转成字典类型--再转成json,中文处理-->最终转成字符串
+                    context = json.dumps(dict(item), ensure_ascii=False).__str__() + ",\n"
+                    self.f.write(context)
+                    self.f.flush()
+                    return item
+            else:
+                # mail反查
+
+                pass
 
     def close_spider(self, spider):
+        #文件存在才关闭
+        if self.f:
+            self.f.write(']')
+            self.f.flush()
+            self.f.close()
+            # 删除结果中的空文件-和空信息的文件
+            self.delete_file()
 
-        self.f.write(']')
-        self.f.flush()
-        self.f.close()
         pass
+
+    def delete_file(self):
+        # 删除结果文件中的空文件
+        print("=========", self.result_root)
+        if self.result_root:
+            list = os.listdir(self.result_root)
+            for i in range(0, len(list)):
+                path = os.path.join(self.result_root, list[i])
+                if os.path.isfile(path):
+                    # 如果是文件--判断文件大小-如果为0就删除
+                    # 如果文件大小为0
+                    if os.path.getsize(path) == 0:
+                        # 删除文件
+                        if os.path.exists(path):
+                            try:
+                                os.remove(path)
+                            except Exception as e:
+                                print("出现异常", e)
+                            print('=====>删除空白文件', path)
+                    # 判断是否是空json
+                    else:
+                        with open(path, 'r', encoding='utf8') as f:
+                            # 读取第一行
+                            first_line = f.readline()
+                            if first_line == '[]':
+                                # 删除文件
+                                if os.path.exists(path):
+                                    try:
+                                        os.remove(path)
+                                    except Exception as e:
+                                        print("出现异常", e)
+
+                                    print('=====>删除空json文件', path)
 
 
 class cnPipleLine(object):
