@@ -23,7 +23,7 @@ NEWSPIDER_MODULE = 'scrapy_learn.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # 模拟浏览器请求
-USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0'
 
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
@@ -32,7 +32,7 @@ ROBOTSTXT_OBEY = False
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # 线程数 默认16
 # CONCURRENT_REQUESTS = 32
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 3
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -124,3 +124,4 @@ PROXIES = ['http://183.207.95.27:80', 'http://111.6.100.99:80', 'http://122.72.9
 
 CN_SOURCE=r"C:\xxm\learn\python_workspace\scrapy_learn\file\cns"
 CN_RESULT=r"C:\xxm\learn\python_workspace\scrapy_learn\file\result"
+MAIL_FAIL=r'C:\xxm\learn\python_workspace\scrapy_learn\file\mails'

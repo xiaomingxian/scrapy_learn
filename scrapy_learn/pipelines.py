@@ -67,9 +67,10 @@ class workPipleLine(object):
     # 初始化的时候只执行一次
     def __init__(self, CN_RESULT):
         self.result_root = CN_RESULT
-        self.file_name = "/re_" + (str(time.time()).replace(".", "")) + '.json'
+        self.file_name = "/yu_" + (str(time.time()).replace(".", "")) + '.json'
         self.mail_file_name = "/mail_" + (str(time.time()).replace(".", "")) + '.json'
-        self.f = None
+        self.yf = None
+        self.mf = None
 
         pass
 
@@ -81,68 +82,55 @@ class workPipleLine(object):
 
     def process_item(self, item, spider):
         if spider.name == 'work':
-            if item['mail'] == None:
-                # 如果文件不存在--创建文件
-                if item:
-                    # 有内容才写
-                    if not os._exists(self.result_root + self.file_name):
-                        self.f = open(self.result_root + self.file_name, 'a')
-                        self.f.write('[')
-                        self.f.flush()
-                        pass
-                    # 转成字典类型--再转成json,中文处理-->最终转成字符串
-                    context = json.dumps(dict(item), ensure_ascii=False).__str__() + ",\n"
-                    self.f.write(context)
-                    self.f.flush()
-                    return item
-            else:
-                # mail反查
+            if item['type'] == 'cn':
+                fileName = self.result_root + self.file_name
+                if self.yf == None:
+                    self.yf = open(fileName, 'a')
+                    self.yf.write('[\n')
+                    self.yf.flush()
+                self.writeContext(item, self.yf)
+            elif item['type'] == 'mail':
+                fileName = self.result_root + self.mail_file_name
+                if self.mf == None:
+                    self.mf = open(fileName, 'a')
+                    self.mf.write('[\n')
+                    self.mf.flush()
 
-                pass
+                self.writeContext(item, self.mf)
+
+    def writeContext(self, item, file):
+        # 转成字典类型--再转成json,中文处理-->最终转成字符串
+        context = json.dumps(dict(item), ensure_ascii=False).__str__() + "\n,\n"
+        file.write(context)
+        file.flush()
+        return item
 
     def close_spider(self, spider):
-        #文件存在才关闭
-        if self.f:
-            self.f.write(']')
-            self.f.flush()
-            self.f.close()
-            # 删除结果中的空文件-和空信息的文件
-            self.delete_file()
-
-        pass
-
-    def delete_file(self):
-        # 删除结果文件中的空文件
-        print("=========", self.result_root)
-        if self.result_root:
-            list = os.listdir(self.result_root)
-            for i in range(0, len(list)):
-                path = os.path.join(self.result_root, list[i])
-                if os.path.isfile(path):
-                    # 如果是文件--判断文件大小-如果为0就删除
-                    # 如果文件大小为0
-                    if os.path.getsize(path) == 0:
-                        # 删除文件
-                        if os.path.exists(path):
-                            try:
-                                os.remove(path)
-                            except Exception as e:
-                                print("出现异常", e)
-                            print('=====>删除空白文件', path)
-                    # 判断是否是空json
-                    else:
-                        with open(path, 'r', encoding='utf8') as f:
-                            # 读取第一行
-                            first_line = f.readline()
-                            if first_line == '[]':
-                                # 删除文件
-                                if os.path.exists(path):
-                                    try:
-                                        os.remove(path)
-                                    except Exception as e:
-                                        print("出现异常", e)
-
-                                    print('=====>删除空json文件', path)
+        # 读取最后一行删除逗号
+        # 文件存在才关闭
+        # 域名文件
+        if self.yf != None:
+            self.yf.close()
+            lines=[]
+            with open(str(self.yf.name),'r') as f:
+                lines = f.readlines()
+                lines[len(lines) - 1] = ']'
+            with open(str(self.yf.name),'w') as f:
+                f.writelines(lines)
+                f.flush()
+                f.close()
+        # 邮箱文件
+        if self.mf != None:
+            self.mf.close()
+            lines = []
+            with open(str(self.mf.name), 'r') as f:
+                lines = f.readlines()
+                lines[len(lines) - 1] = ']'
+            with open(str(self.mf.name), 'w') as f:
+                f.writelines(lines)
+                f.flush()
+                f.close()
+        print("=====>结果文件写入完成")
 
 
 class cnPipleLine(object):
