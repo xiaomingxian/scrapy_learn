@@ -7,7 +7,9 @@
 import random
 
 from scrapy import signals
+import logging
 
+log = logging.getLogger(__name__)
 
 class ScrapyLearnSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -103,6 +105,7 @@ class ScrapyLearnDownloaderMiddleware(object):
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
+
 class ProxyMiddleware(object):
     '''
     设置Proxy
@@ -118,3 +121,19 @@ class ProxyMiddleware(object):
     def process_request(self, request, spider):
         ip = random.choice(self.ip)
         request.meta['proxy'] = ip
+
+
+#  模拟不同的浏览器
+class UserAgentMiddleware(object):
+    def __init__(self, user_agent):
+        self.user_agent = user_agent
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            user_agent=crawler.settings.get('AGENTS')
+        )
+
+    def process_request(self, request, spider):
+        agent = random.choice(self.user_agent)
+        request.headers['User-Agent'] = agent

@@ -119,6 +119,8 @@ class workPipleLine(object):
                 f.writelines(lines)
                 f.flush()
                 f.close()
+            print("=====>域名结果文件写入完成")
+
         # 邮箱文件
         if self.mf != None:
             self.mf.close()
@@ -130,7 +132,7 @@ class workPipleLine(object):
                 f.writelines(lines)
                 f.flush()
                 f.close()
-        print("=====>结果文件写入完成")
+            print("=====>邮箱结果文件写入完成")
 
 
 class cnPipleLine(object):
