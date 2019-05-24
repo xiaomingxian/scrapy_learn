@@ -1,0 +1,61 @@
+
+
+pip安装
+
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py   # 下载安装脚本
+
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        如果：curl: (35) SSL connect error  无法在服务器使用curl命令访问https域名,原因是nss版本有点旧了，yum -y update nss更新一下，重新curl即可！
+    yum -y update nss
+sudo python get-pip.py    # 运行安装脚本
+
+------------未成功
+
+
+pip安装方式2
+    首先安装epel扩展源：
+        sudo yum -y install epel-release
+    再安装pip
+        sudo yum -y install python-pip
+
+安装 Twisted
+    wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2 --no-check-certificate
+    tar -xjvf Twisted-15.2.1.tar.bz2
+    cd Twisted-15.2.1
+    python setup.py install
+    如果报错：command 'gcc' failed with exit status 1
+        yum install -y gcc
+      如果还报这个错
+        yum install gcc libffi-devel python-devel openssl-devel -y
+
+pip install scrapy
+    报错：Command "python setup.py egg_info" failed with error code 1
+    解决方法是更新 setuptools 和 pip：
+        pip install --upgrade setuptools
+        python -m pip install --upgrade pip
+
+
+----------------- linux安装python
+
+删掉自带的 python参考 linux搭建环境
+wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+# yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel //安装可能的依赖库
+# tar -zxvf Python-3.6.2.tgz
+# cd Python-3.6.2/
+# ./configure --prefix=/usr/local/ //安装到/usr/local目录
+# make
+# make altinstall //此处不能用install安装，因为install不区分版本，会出现多版本混乱的问题
+
+
+yum -y install  zlib-devel
+                bzip2-devel
+                openssl-devel
+                ncurses-devel
+                sqlite-devel
+                readline-devel
+                tk-devel
+                gdbm-devel
+                db4-devel
+                libpcap-devel
+                xz-devel
+                libffi-devel

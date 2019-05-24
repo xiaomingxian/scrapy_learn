@@ -115,6 +115,10 @@ CN_SOURCE = r"C:\xxm\learn\python_workspace\scrapy_learn\file\cns"
 CN_RESULT = r"C:\xxm\learn\python_workspace\scrapy_learn\file\result"
 MAIL_FAIL = r'C:\xxm\learn\python_workspace\scrapy_learn\file\mails'
 
+# 域名反查--延时时间[秒]
+CN_DELAY = 2
+# 邮箱反查--延时时间[秒]
+MAIL_DELAY = 2
 
 # 代理ip
 PROXIES = ['http://183.207.95.27:80', 'http://111.6.100.99:80', 'http://122.72.99.103:80',
