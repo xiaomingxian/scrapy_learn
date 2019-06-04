@@ -1,0 +1,117 @@
+
+============================================================python2.6安装
+1、删除现有Python
+    [root@test ~]# rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps ##强制删除已安装程序及其关联
+[root@test ~]# whereis python |xargs rm -frv ##删除所有残余文件 ##xargs，允许你对输出执行其他某些命令
+[root@test ~]# whereis python ##验证删除，返回无结果
+
+2.在线下载Python.rpm
+    wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-2.6.6-66.el6_8.x86_64.rpm
+    wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-iniparse-0.3.1-2.1.el6.noarch.rpm
+    wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-pycurl-7.19.0-9.el6.x86_64.rpm
+    wget  http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-devel-2.6.6-66.el6_8.x86_64.rpm
+    wget  http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-libs-2.6.6-66.el6_8.x86_64.rpm
+    wget  http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-urlgrabber-3.9.1-11.el6.noarch.rpm
+    wget  http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/rpm-python-4.8.0-59.el6.x86_64.rpm
+
+3.安装命令（root权限使用下面的命令）
+    rpm -ivh python-*   rpm-python-*  --nodeps --force
+
+============================================================
+
+2.在线下载yum.rpm
+    wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/yum-3.2.29-81.el6.centos.noarch.rpm
+    wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/yum-metadata-parser-1.1.2-16.el6.x86_64.rpm
+    wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.30-41.el6.noarch.rpm
+
+3.安装命令
+    rpm -ivh yum-*
+
+============================================================
+pip安装方式2
+    首先安装epel扩展源：
+        sudo yum -y install epel-release
+    再安装pip
+        sudo yum -y install python-pip
+
+======================================
+
+
+================================2.7.9
+wget --no-check-certificate https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
+
+    centos6.5 安装 scrapy
+    升级一下软件包
+    yum -y update
+
+    安装gcc
+    yum install gcc
+
+    下载Python2.7.9，系统自带的2.6版本不能安装scrapy
+
+
+    ------安装zlib相关依赖包
+     yum -y install zlib*
+
+    #wget --no-check-certificate https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
+    wget --no-check-certificate https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tar.xz
+    tar xvf Python-2.7.9.tar.xz
+    cd Python-2.7.9
+    ./configure
+    指定： ./configure --with-zlib
+    编辑Modules/Setup，找到下面这句，去掉注释，然后编译安装
+    //zlib zlibmodule.c -I$(prefix)/include -L$(exec_prefix)/lib -lz
+
+   //vim Modules/Setup
+    ==========================
+            3.7版本需要一个新的包libffi-devel，安装此包之后再次进行编译安装即可。
+
+            #yum install libffi-devel -y
+            #make install
+            若在安装前移除了/usr/bin下python的文件链接依赖，此时yum无法正常使用，需要自己下载相关软件包安装，为节省读者时间，放上链接
+
+            #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libffi-devel-3.0.13-18.el7.x86_64.rpm
+            #rpm -ivh libffi-devel-3.0.13-18.el7.x86_64.rpm
+            安装完成后重新进行make install，结束后再次配置相关文件的软连接即可。
+    ==========================
+    make & make install
+    修改Python软链接
+
+    mv /usr/bin/python  /usr/bin/python.bak
+    ln -s  /usr/local/bin/python2.7  /usr/bin/python
+    编辑/usr/bin/yum
+    vim /usr/bin/yum
+
+    把第一行的 #!/usr/bin/python 改成 #!/usr/bin/python2.6
+    接下来安装setuptools
+
+    编译生效
+    source /etc/profile
+
+    检查
+    python
+
+
+
+1、打开终端，输入一下命令安装zlib相关依赖包：
+
+    yum -y install zlib*
+
+    wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py
+    python ez_setup.py
+    安装pip
+
+    wget --no-check-certificate  https://bootstrap.pypa.io/get-pip.py
+    python get-pip.py
+    最后利用pip安装scrapy
+    pip install scrapy
+
+
+
+    注：使用pip的时候，可能会报 command not found 的错误，是因为他们的链接不存在，可以添加软链接或者执行
+    whereis pip
+
+    得到路径后使用全路径
+    /usr/local/bin/pip install scrapy
+
+    scrapy也是这样

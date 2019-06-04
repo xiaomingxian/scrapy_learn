@@ -1,0 +1,20 @@
+    yum install vixie-cron
+    yum install crontabs
+
+    vixie-cron软件包是cron的主程序；
+    crontabs软件包是用来安装、卸装、或列举用来驱动 cron 守护进程的表格的程序。
+
+===================================================
+
+    用以下的方法启动、关闭这个cron服务：
+    service crond start //启动服务
+    service crond stop //关闭服务
+    service crond restart //重启服务
+    service crond reload //重新载入配置
+
+    查看crontab服务状态：service crond status
+    手动启动crontab服务：service crond start
+
+==================================================
+crontab -e
+/root/dev/scrapy_work/scrapy_learn/scrapy_learn
