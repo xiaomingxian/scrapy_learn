@@ -63,3 +63,13 @@ xpath的下表从1开始 python的从0开始
 item交给管道
 request交给调度器
 
+=========== 获取setting中的内容
+1 from 项目名.setting import ...
+2 self.setting['xxx'] / self.setting.get('xxx','可以传值?')  self表示爬虫[spider]实例
+3 在pipleLine中 spider.setting.get('xxx')
+    中的open_spider() 在爬虫开启的时候执行一次 在里面设置的spider.xxx 可以在spider中通过self.xxx进行访问
+
+=========== 登陆相关
+一次登陆后
+setting中的COOKIES_ENABLED = True 默认会带着上次请求的cookie
+start_url的请求是在 start_request中进行处理最终调用Request模块进行处理 --->自定义处理[自定义start_request--自定义解析函数]

@@ -13,5 +13,5 @@ class IptestSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse, dont_filter=True)
 
     def parse(self, response):
-        print(response.text)
+        print('--->ip代理测试：',response.text)
         pass

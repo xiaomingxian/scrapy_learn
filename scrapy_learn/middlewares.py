@@ -119,7 +119,10 @@ class ProxyMiddleware(object):
         return cls(ip=crawler.settings.get('PROXIES'))
 
     def process_request(self, request, spider):
+
         ip = random.choice(self.ip)
+        print("this is ip:" + ip)
+
         request.meta['proxy'] = ip
 
 
