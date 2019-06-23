@@ -1,0 +1,35 @@
+whereis python
+
+一、升级或卸载Python导致：
+    1、查看已安装python的版本，可能是当前系统存在多个python导致
+    [root@test ~]# whereis python
+    python: /usr/bin/python2.6 /usr/bin/python /usr/bin/python2.6-config /usr/lib/python2.6 /usr/lib64/python2.6 /usr/include/python2.6 /usr/share/man/man1/python.1.gz
+    [root@test ~]# vi /usr/bin/yum
+    将 #!/usr/bin/python 修改为 #!/usr/bin/python2.6
+    如果是源代码安装的，默认路径是/usr/local/bin/python2.6,做个软链接即可
+    rm -rf /usr/bin/python
+    ln -s /usr/local/bin/python2.6 /usr/bin/python
+
+二、完全重装python和yum
+    1、删除现有Python
+        [root@test ~]# rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps ##强制删除已安装程序及其关联
+    [root@test ~]# whereis python |xargs rm -frv ##删除所有残余文件 ##xargs，允许你对输出执行其他某些命令
+    [root@test ~]# whereis python ##验证删除，返回无结果
+    2、删除现有的yum
+    [root@test ~]# rpm -qa|grep yum|xargs rpm -ev --allmatches --nodeps
+    [root@test ~]# whereis yum |xargs rm -frv
+
+    安装yum与系统版本对应  cat /etc/issue 查看版本
+    此处没对应-->: http://yum.baseurl.org/download/3.2/yum-3.2.28.tar.gz
+        运行安装：touch /etc/ yum.conf
+
+    ------安装zlib相关依赖包
+     yum -y install zlib*
+
+    ------下载相应linux版本 解压
+
+
+
+     进入解压目录  输入命令：  ./configure  生成相应 makeFile
+
+     检测编译安装[耗时]  make && make install

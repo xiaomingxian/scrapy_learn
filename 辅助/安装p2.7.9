@@ -1,0 +1,58 @@
+============================环境安装==========================
+    1.升级一下软件包
+        yum -y update
+        yum install gcc
+
+    2.安装zlib相关依赖包  安装setuptools需要
+        yum -y install zlib*
+
+    3.ssl相关 安装pip时需要
+        sudo yum install openssl-devel
+
+    4.下载Python2.7.9，系统自带的2.6版本不能安装scrapy
+        wget --no-check-certificate https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tar.xz
+        tar xvf Python-2.7.9.tar.xz
+        cd Python-2.7.9
+        ./configure
+        make & make install
+        修改Python软链接
+
+        mv /usr/bin/python  /usr/bin/python.bak
+        ln -s  /usr/local/bin/python2.7  /usr/bin/python
+
+        输入python 回车查看版本
+
+                5.编辑/usr/bin/yum
+                    vim /usr/bin/yum
+                    把第一行的 #!/usr/bin/python 改成 #!/usr/bin/python2.6
+
+    6.接下来安装setuptools
+        wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py
+        python ez_setup.py
+
+    7.安装pip
+        wget --no-check-certificate  https://bootstrap.pypa.io/get-pip.py
+        python get-pip.py
+
+    忽略[如果各种不成功可以重新编译下python]：8.编译指定： ./configure --with-zlib   --enable-optimizations
+
+
+    9.安装 Twisted
+        wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2 --no-check-certificate
+        tar -xjvf Twisted-15.2.1.tar.bz2
+        cd Twisted-15.2.1
+        python setup.py install
+
+
+    10.最后利用pip安装scrapy
+        pip install scrapy
+
+    11.pip install scrapy
+        如果提示没有权限
+        whereis pip 用绝对地址 install scrapy
+
+============================ scrapy 部署 ==========================
+上传压缩包 解压
+
+
+

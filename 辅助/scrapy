@@ -73,3 +73,4 @@ request交给调度器
 一次登陆后
 setting中的COOKIES_ENABLED = True 默认会带着上次请求的cookie
 start_url的请求是在 start_request中进行处理最终调用Request模块进行处理 --->自定义处理[自定义start_request--自定义解析函数]
+C:\xxm\learn\python_workspace\scrapy_learn\venv
