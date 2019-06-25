@@ -3,7 +3,6 @@ import scrapy
 import logging
 import time
 import os
-import re
 
 logger = logging.getLogger(__name__)
 

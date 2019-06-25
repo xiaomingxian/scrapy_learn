@@ -74,3 +74,8 @@ request交给调度器
 setting中的COOKIES_ENABLED = True 默认会带着上次请求的cookie
 start_url的请求是在 start_request中进行处理最终调用Request模块进行处理 --->自定义处理[自定义start_request--自定义解析函数]
 C:\xxm\learn\python_workspace\scrapy_learn\venv
+=========== 分布式爬虫 scrapy_redis
+在scrapy上实现了更多：
+    request去重[增量式去重][通过指纹去重[判断指纹是否在redis中存在]]
+    爬虫持久化
+    实现分布式
