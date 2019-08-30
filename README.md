@@ -1,2 +1,2 @@
-# scrapy_learn
-爬虫项目
+# scrapy_learns
+scrapy学习
