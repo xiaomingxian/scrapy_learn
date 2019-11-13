@@ -1,19 +1,19 @@
     yum install vixie-cron
     yum install crontabs
 
-    vixie-cronÈí¼ş°üÊÇcronµÄÖ÷³ÌĞò£»
-    crontabsÈí¼ş°üÊÇÓÃÀ´°²×°¡¢Ğ¶×°¡¢»òÁĞ¾ÙÓÃÀ´Çı¶¯ cron ÊØ»¤½ø³ÌµÄ±í¸ñµÄ³ÌĞò¡£
+    vixie-cronè½¯ä»¶åŒ…æ˜¯cronçš„ä¸»ç¨‹åºï¼›
+    crontabsè½¯ä»¶åŒ…æ˜¯ç”¨æ¥å®‰è£…ã€å¸è£…ã€æˆ–åˆ—ä¸¾ç”¨æ¥é©±åŠ¨ cron å®ˆæŠ¤è¿›ç¨‹çš„è¡¨æ ¼çš„ç¨‹åºã€‚
 
 ===================================================
 
-    ÓÃÒÔÏÂµÄ·½·¨Æô¶¯¡¢¹Ø±ÕÕâ¸öcron·şÎñ£º
-    service crond start //Æô¶¯·şÎñ
-    service crond stop //¹Ø±Õ·şÎñ
-    service crond restart //ÖØÆô·şÎñ
-    service crond reload //ÖØĞÂÔØÈëÅäÖÃ
+    ç”¨ä»¥ä¸‹çš„æ–¹æ³•å¯åŠ¨ã€å…³é—­è¿™ä¸ªcronæœåŠ¡ï¼š
+    service crond start //å¯åŠ¨æœåŠ¡
+    service crond stop //å…³é—­æœåŠ¡
+    service crond restart //é‡å¯æœåŠ¡
+    service crond reload //é‡æ–°è½½å…¥é…ç½®
 
-    ²é¿´crontab·şÎñ×´Ì¬£ºservice crond status
-    ÊÖ¶¯Æô¶¯crontab·şÎñ£ºservice crond start
+    æŸ¥çœ‹crontabæœåŠ¡çŠ¶æ€ï¼šservice crond status
+    æ‰‹åŠ¨å¯åŠ¨crontabæœåŠ¡ï¼šservice crond start
 
 ==================================================
 crontab -e

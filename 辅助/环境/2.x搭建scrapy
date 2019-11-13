@@ -1,39 +1,39 @@
 
 
 
-pip°²×°·½Ê½2
-    Ê×ÏÈ°²×°epelÀ©Õ¹Ô´£º
+pipå®‰è£…æ–¹å¼2
+    é¦–å…ˆå®‰è£…epelæ‰©å±•æºï¼š
         sudo yum -y install epel-release
-    ÔÙ°²×°pip
+    å†å®‰è£…pip
         sudo yum -y install python-pip
 
-°²×° Twisted
+å®‰è£… Twisted
     wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2 --no-check-certificate
     tar -xjvf Twisted-15.2.1.tar.bz2
     cd Twisted-15.2.1
     python setup.py install
-    Èç¹û±¨´í£ºcommand 'gcc' failed with exit status 1
+    å¦‚æœæŠ¥é”™ï¼šcommand 'gcc' failed with exit status 1
         yum install -y gcc
-      Èç¹û»¹±¨Õâ¸ö´í
+      å¦‚æœè¿˜æŠ¥è¿™ä¸ªé”™
         yum install gcc libffi-devel python-devel openssl-devel -y
 
 pip install scrapy
-    ±¨´í£ºCo   mmand "python setup.py egg_info" failed with error code 1
-    ½â¾ö·½·¨ÊÇ¸üĞÂ setuptools ºÍ pip£º
+    æŠ¥é”™ï¼šCo   mmand "python setup.py egg_info" failed with error code 1
+    è§£å†³æ–¹æ³•æ˜¯æ›´æ–° setuptools å’Œ pipï¼š
         pip install --upgrade setuptools
         python -m pip install --upgrade pip
 
 
------------------ linux°²×°python
+----------------- linuxå®‰è£…python
 
-É¾µô×Ô´øµÄ python²Î¿¼ linux´î½¨»·¾³
+åˆ æ‰è‡ªå¸¦çš„ pythonå‚è€ƒ linuxæ­å»ºç¯å¢ƒ
 wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
-# yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel //°²×°¿ÉÄÜµÄÒÀÀµ¿â
+# yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel //å®‰è£…å¯èƒ½çš„ä¾èµ–åº“
 # tar -zxvf Python-3.6.2.tgz
 # cd Python-3.6.2/
-# ./configure --prefix=/usr/local/ //°²×°µ½/usr/localÄ¿Â¼
+# ./configure --prefix=/usr/local/ //å®‰è£…åˆ°/usr/localç›®å½•
 # make
-# make altinstall //´Ë´¦²»ÄÜÓÃinstall°²×°£¬ÒòÎªinstall²»Çø·Ö°æ±¾£¬»á³öÏÖ¶à°æ±¾»ìÂÒµÄÎÊÌâ
+# make altinstall //æ­¤å¤„ä¸èƒ½ç”¨installå®‰è£…ï¼Œå› ä¸ºinstallä¸åŒºåˆ†ç‰ˆæœ¬ï¼Œä¼šå‡ºç°å¤šç‰ˆæœ¬æ··ä¹±çš„é—®é¢˜
 
 
 yum -y install  zlib-devel

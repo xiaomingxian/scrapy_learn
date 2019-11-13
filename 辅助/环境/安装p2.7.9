@@ -1,58 +1,58 @@
-============================»·¾³°²×°==========================
-    1.Éı¼¶Ò»ÏÂÈí¼ş°ü
+============================ç¯å¢ƒå®‰è£…==========================
+    1.å‡çº§ä¸€ä¸‹è½¯ä»¶åŒ…
         yum -y update
         yum install gcc
 
-    2.°²×°zlibÏà¹ØÒÀÀµ°ü  °²×°setuptoolsĞèÒª
+    2.å®‰è£…zlibç›¸å…³ä¾èµ–åŒ…  å®‰è£…setuptoolséœ€è¦
         yum -y install zlib*
 
-    3.sslÏà¹Ø °²×°pipÊ±ĞèÒª
+    3.sslç›¸å…³ å®‰è£…pipæ—¶éœ€è¦
         sudo yum install openssl-devel
 
-    4.ÏÂÔØPython2.7.9£¬ÏµÍ³×Ô´øµÄ2.6°æ±¾²»ÄÜ°²×°scrapy
+    4.ä¸‹è½½Python2.7.9ï¼Œç³»ç»Ÿè‡ªå¸¦çš„2.6ç‰ˆæœ¬ä¸èƒ½å®‰è£…scrapy
         wget --no-check-certificate https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tar.xz
         tar xvf Python-2.7.9.tar.xz
         cd Python-2.7.9
         ./configure
         make & make install
-        ĞŞ¸ÄPythonÈíÁ´½Ó
+        ä¿®æ”¹Pythonè½¯é“¾æ¥
 
         mv /usr/bin/python  /usr/bin/python.bak
         ln -s  /usr/local/bin/python2.7  /usr/bin/python
 
-        ÊäÈëpython »Ø³µ²é¿´°æ±¾
+        è¾“å…¥python å›è½¦æŸ¥çœ‹ç‰ˆæœ¬
 
-                5.±à¼­/usr/bin/yum
+                5.ç¼–è¾‘/usr/bin/yum
                     vim /usr/bin/yum
-                    °ÑµÚÒ»ĞĞµÄ #!/usr/bin/python ¸Ä³É #!/usr/bin/python2.6
+                    æŠŠç¬¬ä¸€è¡Œçš„ #!/usr/bin/python æ”¹æˆ #!/usr/bin/python2.6
 
-    6.½ÓÏÂÀ´°²×°setuptools
+    6.æ¥ä¸‹æ¥å®‰è£…setuptools
         wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py
         python ez_setup.py
 
-    7.°²×°pip
+    7.å®‰è£…pip
         wget --no-check-certificate  https://bootstrap.pypa.io/get-pip.py
         python get-pip.py
 
-    ºöÂÔ[Èç¹û¸÷ÖÖ²»³É¹¦¿ÉÒÔÖØĞÂ±àÒëÏÂpython]£º8.±àÒëÖ¸¶¨£º ./configure --with-zlib   --enable-optimizations
+    å¿½ç•¥[å¦‚æœå„ç§ä¸æˆåŠŸå¯ä»¥é‡æ–°ç¼–è¯‘ä¸‹python]ï¼š8.ç¼–è¯‘æŒ‡å®šï¼š ./configure --with-zlib   --enable-optimizations
 
 
-    9.°²×° Twisted
+    9.å®‰è£… Twisted
         wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.2.1.tar.bz2 --no-check-certificate
         tar -xjvf Twisted-15.2.1.tar.bz2
         cd Twisted-15.2.1
         python setup.py install
 
 
-    10.×îºóÀûÓÃpip°²×°scrapy
+    10.æœ€ååˆ©ç”¨pipå®‰è£…scrapy
         pip install scrapy
 
     11.pip install scrapy
-        Èç¹ûÌáÊ¾Ã»ÓĞÈ¨ÏŞ
-        whereis pip ÓÃ¾ø¶ÔµØÖ· install scrapy
+        å¦‚æœæç¤ºæ²¡æœ‰æƒé™
+        whereis pip ç”¨ç»å¯¹åœ°å€ install scrapy
 
-============================ scrapy ²¿Êğ ==========================
-ÉÏ´«Ñ¹Ëõ°ü ½âÑ¹
+============================ scrapy éƒ¨ç½² ==========================
+ä¸Šä¼ å‹ç¼©åŒ… è§£å‹
 
 
 

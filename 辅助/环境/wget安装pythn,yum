@@ -1,11 +1,11 @@
 
-============================================================python2.6°²×°
-1¡¢É¾³ıÏÖÓĞPython
-    [root@test ~]# rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps ##Ç¿ÖÆÉ¾³ıÒÑ°²×°³ÌĞò¼°Æä¹ØÁª
-[root@test ~]# whereis python |xargs rm -frv ##É¾³ıËùÓĞ²ĞÓàÎÄ¼ş ##xargs£¬ÔÊĞíÄã¶ÔÊä³öÖ´ĞĞÆäËûÄ³Ğ©ÃüÁî
-[root@test ~]# whereis python ##ÑéÖ¤É¾³ı£¬·µ»ØÎŞ½á¹û
+============================================================python2.6å®‰è£…
+1ã€åˆ é™¤ç°æœ‰Python
+    [root@test ~]# rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps ##å¼ºåˆ¶åˆ é™¤å·²å®‰è£…ç¨‹åºåŠå…¶å…³è”
+[root@test ~]# whereis python |xargs rm -frv ##åˆ é™¤æ‰€æœ‰æ®‹ä½™æ–‡ä»¶ ##xargsï¼Œå…è®¸ä½ å¯¹è¾“å‡ºæ‰§è¡Œå…¶ä»–æŸäº›å‘½ä»¤
+[root@test ~]# whereis python ##éªŒè¯åˆ é™¤ï¼Œè¿”å›æ— ç»“æœ
 
-2.ÔÚÏßÏÂÔØPython.rpm
+2.åœ¨çº¿ä¸‹è½½Python.rpm
     wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-2.6.6-66.el6_8.x86_64.rpm
     wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-iniparse-0.3.1-2.1.el6.noarch.rpm
     wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-pycurl-7.19.0-9.el6.x86_64.rpm
@@ -14,24 +14,24 @@
     wget  http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/python-urlgrabber-3.9.1-11.el6.noarch.rpm
     wget  http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/rpm-python-4.8.0-59.el6.x86_64.rpm
 
-3.°²×°ÃüÁî£¨rootÈ¨ÏŞÊ¹ÓÃÏÂÃæµÄÃüÁî£©
+3.å®‰è£…å‘½ä»¤ï¼ˆrootæƒé™ä½¿ç”¨ä¸‹é¢çš„å‘½ä»¤ï¼‰
     rpm -ivh python-*   rpm-python-*  --nodeps --force
 
 ============================================================
 
-2.ÔÚÏßÏÂÔØyum.rpm
+2.åœ¨çº¿ä¸‹è½½yum.rpm
     wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/yum-3.2.29-81.el6.centos.noarch.rpm
     wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/yum-metadata-parser-1.1.2-16.el6.x86_64.rpm
     wget http://mirrors.ustc.edu.cn/centos/6/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.30-41.el6.noarch.rpm
 
-3.°²×°ÃüÁî
+3.å®‰è£…å‘½ä»¤
     rpm -ivh yum-*
 
 ============================================================
-pip°²×°·½Ê½2
-    Ê×ÏÈ°²×°epelÀ©Õ¹Ô´£º
+pipå®‰è£…æ–¹å¼2
+    é¦–å…ˆå®‰è£…epelæ‰©å±•æºï¼š
         sudo yum -y install epel-release
-    ÔÙ°²×°pip
+    å†å®‰è£…pip
         sudo yum -y install python-pip
 
 ======================================
@@ -40,17 +40,17 @@ pip°²×°·½Ê½2
 ================================2.7.9
 wget --no-check-certificate https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
 
-    centos6.5 °²×° scrapy
-    Éı¼¶Ò»ÏÂÈí¼ş°ü
+    centos6.5 å®‰è£… scrapy
+    å‡çº§ä¸€ä¸‹è½¯ä»¶åŒ…
     yum -y update
 
-    °²×°gcc
+    å®‰è£…gcc
     yum install gcc
 
-    ÏÂÔØPython2.7.9£¬ÏµÍ³×Ô´øµÄ2.6°æ±¾²»ÄÜ°²×°scrapy
+    ä¸‹è½½Python2.7.9ï¼Œç³»ç»Ÿè‡ªå¸¦çš„2.6ç‰ˆæœ¬ä¸èƒ½å®‰è£…scrapy
 
 
-    ------°²×°zlibÏà¹ØÒÀÀµ°ü
+    ------å®‰è£…zlibç›¸å…³ä¾èµ–åŒ…
      yum -y install zlib*
 
     #wget --no-check-certificate https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
@@ -58,60 +58,60 @@ wget --no-check-certificate https://www.python.org/ftp/python/3.7.3/Python-3.7.3
     tar xvf Python-2.7.9.tar.xz
     cd Python-2.7.9
     ./configure
-    Ö¸¶¨£º ./configure --with-zlib
-    ±à¼­Modules/Setup£¬ÕÒµ½ÏÂÃæÕâ¾ä£¬È¥µô×¢ÊÍ£¬È»ºó±àÒë°²×°
+    æŒ‡å®šï¼š ./configure --with-zlib
+    ç¼–è¾‘Modules/Setupï¼Œæ‰¾åˆ°ä¸‹é¢è¿™å¥ï¼Œå»æ‰æ³¨é‡Šï¼Œç„¶åç¼–è¯‘å®‰è£…
     //zlib zlibmodule.c -I$(prefix)/include -L$(exec_prefix)/lib -lz
 
    //vim Modules/Setup
     ==========================
-            3.7°æ±¾ĞèÒªÒ»¸öĞÂµÄ°ülibffi-devel£¬°²×°´Ë°üÖ®ºóÔÙ´Î½øĞĞ±àÒë°²×°¼´¿É¡£
+            3.7ç‰ˆæœ¬éœ€è¦ä¸€ä¸ªæ–°çš„åŒ…libffi-develï¼Œå®‰è£…æ­¤åŒ…ä¹‹åå†æ¬¡è¿›è¡Œç¼–è¯‘å®‰è£…å³å¯ã€‚
 
             #yum install libffi-devel -y
             #make install
-            ÈôÔÚ°²×°Ç°ÒÆ³ıÁË/usr/binÏÂpythonµÄÎÄ¼şÁ´½ÓÒÀÀµ£¬´ËÊ±yumÎŞ·¨Õı³£Ê¹ÓÃ£¬ĞèÒª×Ô¼ºÏÂÔØÏà¹ØÈí¼ş°ü°²×°£¬Îª½ÚÊ¡¶ÁÕßÊ±¼ä£¬·ÅÉÏÁ´½Ó
+            è‹¥åœ¨å®‰è£…å‰ç§»é™¤äº†/usr/binä¸‹pythonçš„æ–‡ä»¶é“¾æ¥ä¾èµ–ï¼Œæ­¤æ—¶yumæ— æ³•æ­£å¸¸ä½¿ç”¨ï¼Œéœ€è¦è‡ªå·±ä¸‹è½½ç›¸å…³è½¯ä»¶åŒ…å®‰è£…ï¼Œä¸ºèŠ‚çœè¯»è€…æ—¶é—´ï¼Œæ”¾ä¸Šé“¾æ¥
 
             #wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libffi-devel-3.0.13-18.el7.x86_64.rpm
             #rpm -ivh libffi-devel-3.0.13-18.el7.x86_64.rpm
-            °²×°Íê³ÉºóÖØĞÂ½øĞĞmake install£¬½áÊøºóÔÙ´ÎÅäÖÃÏà¹ØÎÄ¼şµÄÈíÁ¬½Ó¼´¿É¡£
+            å®‰è£…å®Œæˆåé‡æ–°è¿›è¡Œmake installï¼Œç»“æŸåå†æ¬¡é…ç½®ç›¸å…³æ–‡ä»¶çš„è½¯è¿æ¥å³å¯ã€‚
     ==========================
     make & make install
-    ĞŞ¸ÄPythonÈíÁ´½Ó
+    ä¿®æ”¹Pythonè½¯é“¾æ¥
 
     mv /usr/bin/python  /usr/bin/python.bak
     ln -s  /usr/local/bin/python2.7  /usr/bin/python
-    ±à¼­/usr/bin/yum
+    ç¼–è¾‘/usr/bin/yum
     vim /usr/bin/yum
 
-    °ÑµÚÒ»ĞĞµÄ #!/usr/bin/python ¸Ä³É #!/usr/bin/python2.6
-    ½ÓÏÂÀ´°²×°setuptools
+    æŠŠç¬¬ä¸€è¡Œçš„ #!/usr/bin/python æ”¹æˆ #!/usr/bin/python2.6
+    æ¥ä¸‹æ¥å®‰è£…setuptools
 
-    ±àÒëÉúĞ§
+    ç¼–è¯‘ç”Ÿæ•ˆ
     source /etc/profile
 
-    ¼ì²é
+    æ£€æŸ¥
     python
 
 
 
-1¡¢´ò¿ªÖÕ¶Ë£¬ÊäÈëÒ»ÏÂÃüÁî°²×°zlibÏà¹ØÒÀÀµ°ü£º
+1ã€æ‰“å¼€ç»ˆç«¯ï¼Œè¾“å…¥ä¸€ä¸‹å‘½ä»¤å®‰è£…zlibç›¸å…³ä¾èµ–åŒ…ï¼š
 
     yum -y install zlib*
 
     wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py
     python ez_setup.py
-    °²×°pip
+    å®‰è£…pip
 
     wget --no-check-certificate  https://bootstrap.pypa.io/get-pip.py
     python get-pip.py
-    ×îºóÀûÓÃpip°²×°scrapy
+    æœ€ååˆ©ç”¨pipå®‰è£…scrapy
     pip install scrapy
 
 
 
-    ×¢£ºÊ¹ÓÃpipµÄÊ±ºò£¬¿ÉÄÜ»á±¨ command not found µÄ´íÎó£¬ÊÇÒòÎªËûÃÇµÄÁ´½Ó²»´æÔÚ£¬¿ÉÒÔÌí¼ÓÈíÁ´½Ó»òÕßÖ´ĞĞ
+    æ³¨ï¼šä½¿ç”¨pipçš„æ—¶å€™ï¼Œå¯èƒ½ä¼šæŠ¥ command not found çš„é”™è¯¯ï¼Œæ˜¯å› ä¸ºä»–ä»¬çš„é“¾æ¥ä¸å­˜åœ¨ï¼Œå¯ä»¥æ·»åŠ è½¯é“¾æ¥æˆ–è€…æ‰§è¡Œ
     whereis pip
 
-    µÃµ½Â·¾¶ºóÊ¹ÓÃÈ«Â·¾¶
+    å¾—åˆ°è·¯å¾„åä½¿ç”¨å…¨è·¯å¾„
     /usr/local/bin/pip install scrapy
 
-    scrapyÒ²ÊÇÕâÑù
+    scrapyä¹Ÿæ˜¯è¿™æ ·

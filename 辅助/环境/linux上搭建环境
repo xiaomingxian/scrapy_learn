@@ -1,35 +1,35 @@
 whereis python
 
-Ò»¡¢Éı¼¶»òĞ¶ÔØPythonµ¼ÖÂ£º
-    1¡¢²é¿´ÒÑ°²×°pythonµÄ°æ±¾£¬¿ÉÄÜÊÇµ±Ç°ÏµÍ³´æÔÚ¶à¸öpythonµ¼ÖÂ
+ä¸€ã€å‡çº§æˆ–å¸è½½Pythonå¯¼è‡´ï¼š
+    1ã€æŸ¥çœ‹å·²å®‰è£…pythonçš„ç‰ˆæœ¬ï¼Œå¯èƒ½æ˜¯å½“å‰ç³»ç»Ÿå­˜åœ¨å¤šä¸ªpythonå¯¼è‡´
     [root@test ~]# whereis python
     python: /usr/bin/python2.6 /usr/bin/python /usr/bin/python2.6-config /usr/lib/python2.6 /usr/lib64/python2.6 /usr/include/python2.6 /usr/share/man/man1/python.1.gz
     [root@test ~]# vi /usr/bin/yum
-    ½« #!/usr/bin/python ĞŞ¸ÄÎª #!/usr/bin/python2.6
-    Èç¹ûÊÇÔ´´úÂë°²×°µÄ£¬Ä¬ÈÏÂ·¾¶ÊÇ/usr/local/bin/python2.6,×ö¸öÈíÁ´½Ó¼´¿É
+    å°† #!/usr/bin/python ä¿®æ”¹ä¸º #!/usr/bin/python2.6
+    å¦‚æœæ˜¯æºä»£ç å®‰è£…çš„ï¼Œé»˜è®¤è·¯å¾„æ˜¯/usr/local/bin/python2.6,åšä¸ªè½¯é“¾æ¥å³å¯
     rm -rf /usr/bin/python
     ln -s /usr/local/bin/python2.6 /usr/bin/python
 
-¶ş¡¢ÍêÈ«ÖØ×°pythonºÍyum
-    1¡¢É¾³ıÏÖÓĞPython
-        [root@test ~]# rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps ##Ç¿ÖÆÉ¾³ıÒÑ°²×°³ÌĞò¼°Æä¹ØÁª
-    [root@test ~]# whereis python |xargs rm -frv ##É¾³ıËùÓĞ²ĞÓàÎÄ¼ş ##xargs£¬ÔÊĞíÄã¶ÔÊä³öÖ´ĞĞÆäËûÄ³Ğ©ÃüÁî
-    [root@test ~]# whereis python ##ÑéÖ¤É¾³ı£¬·µ»ØÎŞ½á¹û
-    2¡¢É¾³ıÏÖÓĞµÄyum
+äºŒã€å®Œå…¨é‡è£…pythonå’Œyum
+    1ã€åˆ é™¤ç°æœ‰Python
+        [root@test ~]# rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps ##å¼ºåˆ¶åˆ é™¤å·²å®‰è£…ç¨‹åºåŠå…¶å…³è”
+    [root@test ~]# whereis python |xargs rm -frv ##åˆ é™¤æ‰€æœ‰æ®‹ä½™æ–‡ä»¶ ##xargsï¼Œå…è®¸ä½ å¯¹è¾“å‡ºæ‰§è¡Œå…¶ä»–æŸäº›å‘½ä»¤
+    [root@test ~]# whereis python ##éªŒè¯åˆ é™¤ï¼Œè¿”å›æ— ç»“æœ
+    2ã€åˆ é™¤ç°æœ‰çš„yum
     [root@test ~]# rpm -qa|grep yum|xargs rpm -ev --allmatches --nodeps
     [root@test ~]# whereis yum |xargs rm -frv
 
-    °²×°yumÓëÏµÍ³°æ±¾¶ÔÓ¦  cat /etc/issue ²é¿´°æ±¾
-    ´Ë´¦Ã»¶ÔÓ¦-->: http://yum.baseurl.org/download/3.2/yum-3.2.28.tar.gz
-        ÔËĞĞ°²×°£ºtouch /etc/ yum.conf
+    å®‰è£…yumä¸ç³»ç»Ÿç‰ˆæœ¬å¯¹åº”  cat /etc/issue æŸ¥çœ‹ç‰ˆæœ¬
+    æ­¤å¤„æ²¡å¯¹åº”-->: http://yum.baseurl.org/download/3.2/yum-3.2.28.tar.gz
+        è¿è¡Œå®‰è£…ï¼štouch /etc/ yum.conf
 
-    ------°²×°zlibÏà¹ØÒÀÀµ°ü
+    ------å®‰è£…zlibç›¸å…³ä¾èµ–åŒ…
      yum -y install zlib*
 
-    ------ÏÂÔØÏàÓ¦linux°æ±¾ ½âÑ¹
+    ------ä¸‹è½½ç›¸åº”linuxç‰ˆæœ¬ è§£å‹
 
 
 
-     ½øÈë½âÑ¹Ä¿Â¼  ÊäÈëÃüÁî£º  ./configure  Éú³ÉÏàÓ¦ makeFile
+     è¿›å…¥è§£å‹ç›®å½•  è¾“å…¥å‘½ä»¤ï¼š  ./configure  ç”Ÿæˆç›¸åº” makeFile
 
-     ¼ì²â±àÒë°²×°[ºÄÊ±]  make && make install
+     æ£€æµ‹ç¼–è¯‘å®‰è£…[è€—æ—¶]  make && make install
