@@ -12,7 +12,8 @@ import logging
 # 配置参数即可, 爬虫名称，运行频率
 confs = [
     {
-        "spider_name": "work",
+        # "spider_name": "work",
+        "spider_name": "fundSpider",
         "frequency": 2,
     },
 ]
