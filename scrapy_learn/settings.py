@@ -63,7 +63,7 @@ COOKIES_ENABLED = False
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 # 将代理类添加到中间件列表中
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy_learn.middlewares.ScrapyLearnDownloaderMiddleware': 543,
+    # 'scrapy_learn.middlewares.ScrapyLearnDownloaderMiddleware': 543,
     'scrapy_learn.middlewares.UserAgentMiddleware': 1,
     # 'scrapy_learn.middlewares.ProxyMiddleware': 2,
 }
@@ -79,11 +79,11 @@ DOWNLOADER_MIDDLEWARES = {
 # 有多个item管道 每个item都会经过
 ITEM_PIPELINES = {
     #  要开启的pipline的位置 300距离引擎的远近，距离引擎越近越早执行    范围 0-1000
-    'scrapy_learn.pipelines.ScrapyLearnPipeline': 300,
+    # 'scrapy_learn.pipelines.ScrapyLearnPipeline': 300,
     # 'scrapy_learn.pipelines.TestPipeline': 200,
-    'scrapy_learn.pipelines.ipPipleLine': 200,
-    'scrapy_learn.pipelines.workPipleLine': 100,
-    'scrapy_learn.pipelines.cnPipleLine': 50,
+    # 'scrapy_learn.pipelines.ipPipleLine': 200,
+    # 'scrapy_learn.pipelines.workPipleLine': 100,
+    # 'scrapy_learn.pipelines.cnPipleLine': 50,
 }
 # 开启piplines
 
