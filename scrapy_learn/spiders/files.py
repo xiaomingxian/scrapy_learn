@@ -18,59 +18,59 @@ if __name__ == '__main__':
                          'rU').readlines())
         sumy+=county
         sumd+=count
-        if county != count:
-            print(i, county, count)
-            # 找出url
-            # 解析结果的每一行 找出不在 数据源中的url
-            file_data = open(
-                "/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/file30/" + str(i) + ".txt")
-            res = open('/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/res/' + str(i))
+        # if county != count:
+        #     print(i, county, count)
+        #     # 找出url
+        #     # 解析结果的每一行 找出不在 数据源中的url
+        #     file_data = open(
+        #         "/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/file30/" + str(i) + ".txt")
+        #     res = open('/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/res/' + str(i))
+        #
+        #     datay = {}
+        #     #
+        #
+        #     urls = {}
+        #     num = 1
+        #     while True:
+        #         text = res.readline()  # 只读取一行内容
+        #         data = text.replace('\n', '') \
+        #             .replace('\\', '') \
+        #             .replace('\\xa0', '') \
+        #             .replace('"', '\'') \
+        #             .replace('\',', '",') \
+        #             .replace('\'}', '"}') \
+        #             .replace('{\'', '{"') \
+        #             .replace(', \'', ', "') \
+        #             .replace('\':', '":') \
+        #             .replace(': \'', ': "')
+        #         # print('----data:::', data)
+        #         # 判断是否读取到内容
+        #         if not text:
+        #             break
+        #         obj = json.loads(data)
+        #         # print(obj['url'], '   ', num)
+        #         urls[obj['url']] = 'xxx'
+        #         num = num + 1
+        #
+        #     while True:
+        #         text = file_data.readline()  # 只读取一行内容
+        #         url = text.replace('\n', '')
+        #         # 判断是否读取到内容
+        #         if not text:
+        #             break
+        #         try:
+        #             urls[url]
+        #         except Exception as e:
+        #             print('---没结果的url::', url)
+        #             ff = open(
+        #                 "/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/fail_urls/fail_url",
+        #                 'a')
+        #             ff.write(url + '\n')
+        #             ff.close()
+        #
+        #     pass
 
-            datay = {}
-            #
-
-            urls = {}
-            num = 1
-            while True:
-                text = res.readline()  # 只读取一行内容
-                data = text.replace('\n', '') \
-                    .replace('\\', '') \
-                    .replace('\\xa0', '') \
-                    .replace('"', '\'') \
-                    .replace('\',', '",') \
-                    .replace('\'}', '"}') \
-                    .replace('{\'', '{"') \
-                    .replace(', \'', ', "') \
-                    .replace('\':', '":') \
-                    .replace(': \'', ': "')
-                # print('----data:::', data)
-                # 判断是否读取到内容
-                if not text:
-                    break
-                obj = json.loads(data)
-                # print(obj['url'], '   ', num)
-                urls[obj['url']] = 'xxx'
-                num = num + 1
-
-            while True:
-                text = file_data.readline()  # 只读取一行内容
-                url = text.replace('\n', '')
-                # 判断是否读取到内容
-                if not text:
-                    break
-                try:
-                    urls[url]
-                except Exception as e:
-                    print('---没结果的url::', url)
-                    ff = open(
-                        "/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/fail_urls/fail_url",
-                        'a')
-                    ff.write(url + '\n')
-                    ff.close()
-
-            pass
-
-        print(i, count)
+        # print(i, count)
     print(sumy,sumd)
     # 查出来没有记录的url
 
