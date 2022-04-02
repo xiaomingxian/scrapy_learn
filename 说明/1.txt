@@ -1,0 +1,18 @@
+开32个 Terminal跑 f为参数对应  .../scrapy_learn/spiders/files/file30 下的文件序号
+
+scrapy crawl landf -a f=0
+scrapy crawl landf -a f=1
+scrapy crawl landf -a f=2
+...
+scrapy crawl landf -a f=31
+
+------------------------
+爬虫文件位置
+    .../scrapy_learn/scrapy_learn/spiders/detail-file.py
+原始url(李征)
+    .../scrapy_learn/scrapy_learn/spiders/files/links_pure.txt
+被分割为32个文件
+    .../scrapy_learn/scrapy_learn/spiders/files/file30
+
+------------------------
+环境搭建可能比较费劲  可查资料(eg:哔哩哔哩)

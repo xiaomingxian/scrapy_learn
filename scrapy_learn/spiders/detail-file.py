@@ -20,7 +20,7 @@ class IptestSpider(scrapy.Spider):
 
         # file = open("C:\\Users/仙/Desktop/links_pure.txt")
         file = open(
-            "/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/fail_urls/" + str(
+            "/Users/xxm/develop/py_workspace/scrapy_learn/scrapy_learn/spiders/files/file30/" + str(
                 self.file_name) + '.txt')
 
         while True:

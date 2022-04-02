@@ -13,7 +13,8 @@ import logging
 confs = [
     {
         # "spider_name": "work",
-        "spider_name": "fundSpider",
+        # "spider_name": "fundSpider",
+        "spider_name": "leetCode",
         "frequency": 2,
     },
 ]
